@@ -10,7 +10,7 @@ namespace WebStore
     public class Startup
     {
         private readonly IConfiguration _Configuration;
-
+        
         public Startup(IConfiguration Configuration) => _Configuration = Configuration;
 
         public void ConfigureServices(IServiceCollection services)
@@ -30,7 +30,7 @@ namespace WebStore
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context => await context.Response.WriteAsync(_Configuration["Greetings"]));
+                endpoints.MapGet("/home", async context => await context.Response.WriteAsync(_Configuration["Greetings"]));
 
                 endpoints.MapControllerRoute(
                     name:"default",
