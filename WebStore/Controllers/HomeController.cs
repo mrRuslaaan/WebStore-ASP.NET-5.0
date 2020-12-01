@@ -11,7 +11,7 @@ namespace WebStore.Controllers
         
         public IActionResult Index()
         {
-            return Content("First controller first action");
+            return View();
         }
 
         public IActionResult Index_2()
