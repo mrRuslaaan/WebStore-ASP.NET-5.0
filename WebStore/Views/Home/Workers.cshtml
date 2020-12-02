@@ -15,20 +15,21 @@
                 <th>Имя</th>
                 <th>Отчество</th>
                 <th>Возраст</th>
-            </tr>                
+            </tr>
         </thead>
         <tbody>
             @foreach (var worker in Model)
             {
-            <tr>
-                <td>@worker.Id</td>
-                <td>@worker.LastName</td>
-                <td>@worker.FirstName</td>
-                <td>@worker.Patronymic</td>
-                <td>@worker.Age</td>
-            </tr>
+                <tr>
+                    <td><a href="">@worker.Id</a></td> 
+                    <td>@worker.LastName</td>
+                    <td>@worker.FirstName</td>
+                    <td>@worker.Patronymic</td>
+                    <td>@worker.Age</td>
+                </tr>
             }
-        </tbody>   
+        </tbody>
     </table>
+    <a href="~/">Домой</a>
 </body>
 </html>
