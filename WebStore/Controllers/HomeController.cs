@@ -38,7 +38,7 @@ namespace WebStore.Controllers
         {
             var worker = __Workers[id - 1];
 
-            return View();
+            return View(worker);
         }
     }
 }
