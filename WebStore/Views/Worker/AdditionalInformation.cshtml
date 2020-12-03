@@ -1,14 +1,9 @@
-﻿@model WebStore.Models.Worker
+﻿@model Worker
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>AdditionalInformation</title>
-</head>
-<body>
-    <table>
+
+<div class="container">
+    <table class="table">
         <thead>
             <tr>
                 <th>ID</th>
@@ -32,6 +27,5 @@
            
         </tbody>
     </table>
-    <a href="~/">Домой</a>
-</body>
-</html>
+    <a asp-controller="Home" asp-action="Index">Домой</a>
+</div>

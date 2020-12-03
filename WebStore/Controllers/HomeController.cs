@@ -10,18 +10,9 @@ namespace WebStore.Controllers
     {
         private readonly IConfiguration _Configuration;
 
-        private static readonly List<Worker> __Workers = new()
-        {
-            new Worker { Id = 1, LastName = "Пушкин", FirstName = "Александр", Patronymic = "Сергеевич", Age = 22, Position = "junior developer" },
-            new Worker { Id = 2, LastName = "Достоевский", FirstName = "Фёдор", Patronymic = "Михайлович", Age = 39, Position = "designer" },
-            new Worker { Id = 3, LastName = "Толстой", FirstName = "Лев", Patronymic = "Николаевич", Age = 45, Position = "senior developer"},
-        };
-
         public HomeController(IConfiguration Configiration) => _Configuration = Configiration; 
         
         public IActionResult Index() => View();       
-        public IActionResult Workers() => View(__Workers);
-    
         public IActionResult Error404() => View();
         public IActionResult Blogs() => View();
         public IActionResult BlogSingle() => View();

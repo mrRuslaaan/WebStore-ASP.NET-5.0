@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Worker>
+
+
+
+<div class="container">
+    <h3>Сотруднки</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>№</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество</th>
+                <th>Возраст</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var worker in Model)
+            {
+                <tr>
+                    <td><a href="">@worker.Id</a></td>
+                    <td>@worker.LastName</td>
+                    <td>@worker.FirstName</td>
+                    <td>@worker.Patronymic</td>
+                    <td>@worker.Age</td>
+                    <td>
+                        <a asp-action="AdditionalInformation" asp-route-id="@worker.Id">
+                            <i class="fa fa-info-circle"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a asp-controller="Home" asp-action="Index">Домой</a>
+</div>
