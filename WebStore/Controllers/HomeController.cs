@@ -29,11 +29,6 @@ namespace WebStore.Controllers
             return View(__Workers);
         }
 
-        public IActionResult AdditionalInformation(int id)
-        {
-            var worker = __Workers[id - 1];
-
-            return View(worker);
-        }
+       
     }
 }
