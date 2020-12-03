@@ -24,11 +24,6 @@ namespace WebStore.Controllers
             return View();
         }
 
-        public IActionResult Index_2()
-        {
-            return Content(_Configuration["TextForFirstControllerSecondAction"]);
-        }
-
         public IActionResult Workers() 
         {
             return View(__Workers);
