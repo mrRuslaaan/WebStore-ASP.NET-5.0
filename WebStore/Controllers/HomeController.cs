@@ -19,18 +19,11 @@ namespace WebStore.Controllers
 
         public HomeController(IConfiguration Configiration) => _Configuration = Configiration; 
         
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Workers() 
-        {
-            return View(__Workers);
-        }
-
-       public IActionResult Error404() => View();
-        public IActionResult Blog() => View();
+        public IActionResult Index() => View();       
+        public IActionResult Workers() => View(__Workers);
+    
+        public IActionResult Error404() => View();
+        public IActionResult Blogs() => View();
         public IActionResult BlogSingle() => View();
         public IActionResult Cart() => View();
         public IActionResult Checkout() => View();
