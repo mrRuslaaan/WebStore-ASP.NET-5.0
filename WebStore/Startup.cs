@@ -26,6 +26,7 @@ namespace WebStore
             }
 
             app.UseRouting();
+
             app.UseStaticFiles();
 
 
