@@ -14,7 +14,7 @@ namespace WebStore.Controllers
             new Worker { Id = 2, LastName = "Достоевский", FirstName = "Фёдор", Patronymic = "Михайлович", Age = 39, Position = "designer" },
             new Worker { Id = 3, LastName = "Толстой", FirstName = "Лев", Patronymic = "Николаевич", Age = 45, Position = "senior developer" },
         };
-        public IActionResult Index => View(__Workers);
+        public IActionResult Index() => View(__Workers);
 
         public IActionResult AdditionalInformation(int id)
         {
