@@ -91,10 +91,11 @@ namespace WebStore.Controllers
             return View();
         }
 
+        [HttpPost]
         public IActionResult Delete(int id)
         {
             _Workers.Delete(id);
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
     }

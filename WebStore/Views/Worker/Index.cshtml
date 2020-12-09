@@ -3,7 +3,8 @@
 
 
 <div class="container">
-    <h3>Сотруднки</h3>
+    <h3>Сотрудники</h3>
+    <a asp-controller="Worker" asp-action="Create" class="btn btn-primary">Новый сотрудник</a>
     <table class="table">
         <thead>
             <tr>
@@ -12,37 +13,41 @@
                 <th>Имя</th>
                 <th>Отчество</th>
                 <th>Возраст</th>
-                <th></th>
+                <th>Доп инфо</th>
+                <th>Редактировать</th>
+                <th>Удалить</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var worker in Model)
             {
-            <tr>
-                <td>@worker.Id</td>
-                <td>@worker.LastName</td>
-                <td>@worker.FirstName</td>
-                <td>@worker.Patronymic</td>
-                <td>@worker.Age</td>
-                <td>
-                    <a asp-action="AdditionalInformation" asp-route-id="@worker.Id">
-                        <i class="fa fa-info-circle"></i>
-                    </a>
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@worker.Id">
-                        <i class="fa fa-edit"></i>
-                    </a>
-                </td>
-                <td>
-                    <a asp-action="Delete" asp-route-id="@worker.Id">
-                        <i class="fa fa-trash-o"></i>
-                    </a>
-                </td>
-            </tr>
+                <tr>
+                    <td>@worker.Id</td>
+                    <td>@worker.LastName</td>
+                    <td>@worker.FirstName</td>
+                    <td>@worker.Patronymic</td>
+                    <td>@worker.Age</td>
+                    <td>
+                        <a asp-action="AdditionalInformation" asp-route-id="@worker.Id">
+                            <i class="fa fa-info-circle"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@worker.Id">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </td>
+                    <td>
+
+                        <form asp-action="Delete" asp-route-id="@worker.Id">
+                            <button type="submit" class="fa fa-trash-o">      
+                            </button>
+                        </form>
+
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
     <a asp-controller="Home" asp-action="Index">Домой</a>
-    <a asp-controller="Worker" asp-action="Create" class="btn btn-primary">Новый сотрудник</a>
 </div>
