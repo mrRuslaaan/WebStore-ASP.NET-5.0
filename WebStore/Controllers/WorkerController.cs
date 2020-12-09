@@ -4,6 +4,8 @@ using WebStore.Models;
 using System.Linq;
 using WebStore.Infrastructure.Services;
 using WebStore.Infrastructure.Interfaces;
+using WebStore.ViewModels;
+using System;
 
 
 namespace WebStore.Controllers
@@ -27,6 +29,45 @@ namespace WebStore.Controllers
             return NotFound();
         }
 
+        public IActionResult Edit(int id)
+        {
+            if (id < 0)
+                return BadRequest();
 
-}
+            var worker = _Workers.Get(id);
+            if (worker is null)
+                return NotFound();
+
+            return View(new WorkerViewModel
+            {
+                Id = worker.Id,
+                LastName = worker.LastName,
+                FirstName = worker.FirstName,
+                Patronymic = worker.Patronymic,
+                Age = worker.Age,
+                Position = worker.Position,
+            });
+        }
+
+        public IActionResult EditComplete (WorkerViewModel Model)
+        {
+            if (Model is null)
+                throw new ArgumentNullException(nameof(Model));
+
+            var worker = new Worker
+            {
+                Id = Model.Id,
+                LastName = Model.LastName,
+                FirstName = Model.FirstName,
+                Patronymic = Model.Patronymic,
+                Age = Model.Age,
+                Position = Model.Position,
+            };
+
+            _Workers.Update(worker);
+
+            return RedirectToAction("Index");
+        }
+
+    }
 }
