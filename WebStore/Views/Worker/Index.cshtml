@@ -18,25 +18,26 @@
         <tbody>
             @foreach (var worker in Model)
             {
-            <tr>
-                <td>@worker.Id</td>
-                <td>@worker.LastName</td>
-                <td>@worker.FirstName</td>
-                <td>@worker.Patronymic</td>
-                <td>@worker.Age</td>
-                <td>
-                    <a asp-action="AdditionalInformation" asp-route-id="@worker.Id">
-                        <i class="fa fa-info-circle"></i>
-                    </a>
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@worker.Id">
-                        <i class="fa fa-info-circle"></i>
-                    </a>
-                </td>
-            </tr>
+                <tr>
+                    <td>@worker.Id</td>
+                    <td>@worker.LastName</td>
+                    <td>@worker.FirstName</td>
+                    <td>@worker.Patronymic</td>
+                    <td>@worker.Age</td>
+                    <td>
+                        <a asp-action="AdditionalInformation" asp-route-id="@worker.Id">
+                            <i class="fa fa-info-circle"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@worker.Id">
+                            <i class="fa fa-info-circle"></i>
+                        </a>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
     <a asp-controller="Home" asp-action="Index">Домой</a>
+    <a asp-controller="Worker" asp-action="Create">Новый сотрудник</a>
 </div>
