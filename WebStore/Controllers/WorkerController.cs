@@ -72,21 +72,29 @@ namespace WebStore.Controllers
         public IActionResult Create(WorkerViewModel Model)
         {
              if (Model is null)
-                 throw new ArgumentNullException(nameof(Model));          
-            
-            
-             var worker = new Worker
-             {       
-                 LastName = Model.LastName,
-                 FirstName = Model.FirstName,
-                 Patronymic = Model.Patronymic,
-                 Age = Model.Age,
-                 Position = Model.Position,
-             };
-            
-             _Workers.Add(worker);
+                 throw new ArgumentNullException(nameof(Model));
+
+            if (Model.LastName is not null)
+            {
+                var worker = new Worker
+                {
+                    LastName = Model.LastName,
+                    FirstName = Model.FirstName,
+                    Patronymic = Model.Patronymic,
+                    Age = Model.Age,
+                    Position = Model.Position,
+                };
+
+                _Workers.Add(worker);
+            }
 
             return View();
+        }
+
+        public IActionResult Delete(int id)
+        {
+            _Workers.Delete(id);
+            return View("Index");
         }
 
     }
