@@ -19,6 +19,7 @@ namespace WebStore
         {
             services.AddControllersWithViews();
             services.AddTransient<IWorkersData, WorkersDataService>();
+            services.AddTransient<IProductsData, ProductsDataService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
