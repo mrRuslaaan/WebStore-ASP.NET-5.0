@@ -49,10 +49,10 @@ namespace WebStore.Controllers
             });
         }
 
-        public IActionResult EditComplete (WorkerViewModel Model)
+        public IActionResult EditComplete (WorkerViewModel Model)  
         {
             if (!ModelState.IsValid)
-                return View(Model);
+                return View(Model); // Исправить ошибку нужно передать на предстваение предастваление Edit с текущей моделью 
 
             if (Model is null)
                 throw new ArgumentNullException(nameof(Model));
