@@ -8,7 +8,7 @@ namespace WebStore.ViewModels
         public string Name { get ; set; }
         public int Id { get ; set; }
         public int Order { get ; set; }
-        public List<CategoryViewModel> ChildCategories { get; set; }
+        public List<CategoryViewModel> ChildCategories { get; set; } = new();
         public CategoryViewModel ParentCategory { get; set; }
     }
 }
