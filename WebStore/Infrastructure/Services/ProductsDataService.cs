@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebStore.Domain;
 using WebStore.Domain.Entityes;
 using WebStore.Infrastructure.Interfaces;
 
@@ -53,9 +54,36 @@ namespace WebStore.Infrastructure.Services
             new Brand { Id = 6, Name = "Boudestijn", Order = 5 },
             new Brand { Id = 7, Name = "Rosch creative culture", Order = 6 },
         };
+
+        public static IEnumerable<Product> __Products { get; } = new[]
+       {
+            new Product { Id = 1, Name = "Белое платье", Price = 1025, UrlImage = "product1.jpg", Order = 0, CategoryId = 2, BrandId = 1 },
+            new Product { Id = 2, Name = "Розовое платье", Price = 1025, UrlImage = "product2.jpg", Order = 1, CategoryId = 2, BrandId = 1 },
+            new Product { Id = 3, Name = "Красное платье", Price = 1025, UrlImage = "product3.jpg", Order = 2, CategoryId = 2, BrandId = 1 },
+            new Product { Id = 4, Name = "Джинсы", Price = 1025, UrlImage = "product4.jpg", Order = 3, CategoryId = 2, BrandId = 1 },
+            new Product { Id = 5, Name = "Лёгкая майка", Price = 1025, UrlImage = "product5.jpg", Order = 4, CategoryId = 2, BrandId = 2 },
+            new Product { Id = 6, Name = "Лёгкое голубое поло", Price = 1025, UrlImage = "product6.jpg", Order = 5, CategoryId = 2, BrandId = 1 },
+            new Product { Id = 7, Name = "Платье белое", Price = 1025, UrlImage = "product7.jpg", Order = 6, CategoryId = 2, BrandId = 1 },
+            new Product { Id = 8, Name = "Костюм кролика", Price = 1025, UrlImage = "product8.jpg", Order = 7, CategoryId = 25, BrandId = 1 },
+            new Product { Id = 9, Name = "Красное китайское платье", Price = 1025, UrlImage = "product9.jpg", Order = 8, CategoryId = 25, BrandId = 1 },
+            new Product { Id = 10, Name = "Женские джинсы", Price = 1025, UrlImage = "product10.jpg", Order = 9, CategoryId = 25, BrandId = 3 },
+            new Product { Id = 11, Name = "Джинсы женские", Price = 1025, UrlImage = "product11.jpg", Order = 10, CategoryId = 25, BrandId = 3 },
+            new Product { Id = 12, Name = "Летний костюм", Price = 1025, UrlImage = "product12.jpg", Order = 11, CategoryId = 25, BrandId = 3 },
+        };
         public IEnumerable<Brand> GetBrands() => __Brands;
 
         public IEnumerable<Category> GetCategories() => __Categories;
-        
+        public IEnumerable<Product> GetProducts(ProductFilter Filter = null)
+        {
+            var query = __Products;
+
+            if (Filter?.CategoryId != null) 
+                query = query.Where(product => product.CategoryId == Filter.CategoryId);
+
+            if (Filter?.BrandId != null)
+                query = query.Where(product => product.BrandId == Filter.BrandId);
+
+            return query;
+        }
     }
 }
