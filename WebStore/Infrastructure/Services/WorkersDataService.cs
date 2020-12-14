@@ -4,17 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebStore.Infrastructure.Interfaces;
 using WebStore.Models;
+using WebStore.Data;
 
 namespace WebStore.Infrastructure.Services
 {
     public class WorkersDataService : IWorkersData
     {
-        private static readonly List<Worker> __Workers = new()
-        {
-            new Worker { Id = 1, LastName = "Пушкин", FirstName = "Александр", Patronymic = "Сергеевич", Age = 22, Position = "junior developer" },
-            new Worker { Id = 2, LastName = "Достоевский", FirstName = "Фёдор", Patronymic = "Михайлович", Age = 39, Position = "designer" },
-            new Worker { Id = 3, LastName = "Толстой", FirstName = "Лев", Patronymic = "Николаевич", Age = 45, Position = "senior developer" },
-        };
+        private static readonly List<Worker> __Workers = TestData.Workers;
         public int Add(Worker worker)
         {
             if (worker is null)
