@@ -3,13 +3,13 @@ using WebStore.Domain.Entityes.Base.Interfaces;
 
 namespace WebStore.Domain.Entityes
 {
-    public class Product : NamedEntity, IOrderedEntity
+    public class Product : NamedEntity
     {
-        public int Order { get; set; }
         public int CategoryId { get; set; }
-        public string UrlImage { get; set; }
+        public string ImageUrl { get; set; }
         public int? BrandId { get; set; }
         public decimal Price { get; set; }
+
 
     }
 }

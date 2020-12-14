@@ -15,7 +15,6 @@ namespace WebStore.Components
 
         private IEnumerable<BrandViewModel> GetBrands() =>
             _ProductsData.GetBrands()
-                .OrderBy(brand => brand.Order)
                 .Select(brand => new BrandViewModel
                 {
                     Id = brand.Id,
