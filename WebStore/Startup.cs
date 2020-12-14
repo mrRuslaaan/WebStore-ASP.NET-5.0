@@ -9,6 +9,8 @@ using WebStore.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using WebStore.DAL.Context;
 using WebStore.Data;
+using WebStore.Infrastructure.Services.InMemory;
+using WebStore.Infrastructure.Services.InSql;
 
 namespace WebStore
 {
@@ -24,7 +26,7 @@ namespace WebStore
             services.AddTransient<WebStoreDbInitializer>();
             services.AddControllersWithViews();
             services.AddTransient<IWorkersData, WorkersDataService>();
-            services.AddTransient<IProductsData, ProductsDataService>();
+            services.AddTransient<IProductsData, SqlProductData>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, WebStoreDbInitializer db)
