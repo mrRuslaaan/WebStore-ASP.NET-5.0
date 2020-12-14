@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-
 using WebStore.DAL.Context;
 
 namespace WebStore.Data
@@ -22,16 +20,13 @@ namespace WebStore.Data
 
         public void Initialize()
         {
-            _Logger.LogInformation("Инициализация БД...");
+            _Logger.LogInformation("Инициализация БД");
 
             var db = _db.Database;
 
-            //db.EnsureDeleted();
-            //db.EnsureCreated();
-
             if (db.GetPendingMigrations().Any())
             {
-                _Logger.LogInformation("Есть неприменённые миграции...");
+                _Logger.LogInformation("Обнаружены неприменённые миграции");
                 db.Migrate();
                 _Logger.LogInformation("Миграции БД выполнены успешно");
             }
@@ -52,7 +47,7 @@ namespace WebStore.Data
 
         private void InitializeProducts()
         {
-            var timer = Stopwatch.StartNew();
+            
 
             if (_db.Products.Any())
             {
@@ -63,7 +58,7 @@ namespace WebStore.Data
             _Logger.LogInformation("Добавление секций... {0} мс", timer.ElapsedMilliseconds);
             using (_db.Database.BeginTransaction())
             {
-                _db.Sections.AddRange(TestData.Sections);
+                _db.Categories.AddRange(TestData.Categories);
 
                 _db.Database.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Sections] ON");
                 _db.SaveChanges();
@@ -96,7 +91,7 @@ namespace WebStore.Data
                 _db.Database.CommitTransaction();
             }
 
-            _Logger.LogInformation("Добавление исходных данных выполнено успешно за {0} мс", timer.ElapsedMilliseconds);
+            
         }
     }
 }
