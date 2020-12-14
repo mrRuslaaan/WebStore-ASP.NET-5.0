@@ -11,11 +11,11 @@ namespace WebStore.Infrastructure.Services.InMemory
 {
     public class ProductsDataService : IProductsData
     {
-        private static IEnumerable<Category> __Categories = TestData.Categories;
+        private static readonly IEnumerable<Category> __Categories = TestData.Categories;
 
-        private static IEnumerable<Brand> __Brands = TestData.Brands;
+        private static readonly IEnumerable<Brand> __Brands = TestData.Brands;
 
-        public static IEnumerable<Product> __Products = TestData.Products;
+        private static readonly IEnumerable<Product> __Products = TestData.Products;
         public IEnumerable<Brand> GetBrands() => __Brands;
 
         public IEnumerable<Category> GetCategories() => __Categories;

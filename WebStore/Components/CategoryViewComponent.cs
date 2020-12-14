@@ -24,6 +24,7 @@ namespace WebStore.Components
                    Id = c.Id,
                    Name = c.Name,
                    Order = c.Order,
+                   ProductsCount = c.Products.Count(),
                })
                 .ToList();
 
@@ -37,7 +38,8 @@ namespace WebStore.Components
                         Id = child_category.Id,
                         Name = child_category.Name,
                         Order = child_category.Order,
-                        ParentCategory = parent_category
+                        ParentCategory = parent_category,
+                        ProductsCount = child_category.Products.Count(),
                     });
 
                 parent_category.ChildCategories.Sort((a, b) => Comparer<int>.Default.Compare(a.Order, b.Order));

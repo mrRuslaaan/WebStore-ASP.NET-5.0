@@ -19,6 +19,7 @@ namespace WebStore.Components
                 {
                     Id = brand.Id,
                     Name = brand.Name,
+                    ProductsCount = brand.Products.Count()
                 });
     }
 }

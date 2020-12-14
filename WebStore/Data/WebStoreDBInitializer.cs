@@ -55,14 +55,14 @@ namespace WebStore.Data
                 return;
             }
 
-            _Logger.LogInformation("Добавление секций... {0} мс", timer.ElapsedMilliseconds);
+            
             using (_db.Database.BeginTransaction())
             {
                 _db.Categories.AddRange(TestData.Categories);
 
-                _db.Database.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Sections] ON");
+                _db.Database.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Categories] ON");
                 _db.SaveChanges();
-                _db.Database.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Sections] OFF");
+                _db.Database.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Categories] OFF");
 
                 _db.Database.CommitTransaction();
             }
