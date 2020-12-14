@@ -1,12 +1,12 @@
 ﻿<div class="left-sidebar">
 
-    @Component.InvokeAsync("Category");
+    @await Component.InvokeAsync("Category")
 
-    @Component.InvokeAsync("Brands");
+    @await Component.InvokeAsync("Brands")
 
-    <vc:category />
-
-    <vc:brands />
+    <vc:category /> @*Почему не работает*@
+                   
+    <vc:brands />   @*Почему не работает*@
 
     <div class="price-range">
         <!--price-range-->
