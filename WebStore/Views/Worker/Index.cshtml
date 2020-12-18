@@ -3,7 +3,8 @@
 
 
 <div class="container">
-    <h3>Сотруднки</h3>
+    <h3>Сотрудники</h3>
+    <a asp-controller="Worker" asp-action="Create" class="btn btn-primary">Новый сотрудник</a>
     <table class="table">
         <thead>
             <tr>
@@ -12,7 +13,9 @@
                 <th>Имя</th>
                 <th>Отчество</th>
                 <th>Возраст</th>
-                <th></th>
+                <th>Доп инфо</th>
+                <th>Редактировать</th>
+                <th>Удалить</th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +31,19 @@
                         <a asp-action="AdditionalInformation" asp-route-id="@worker.Id">
                             <i class="fa fa-info-circle"></i>
                         </a>
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@worker.Id">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </td>
+                    <td>
+
+                        <form asp-action="Delete" asp-route-id="@worker.Id">
+                            <button type="submit" class="fa fa-trash-o">      
+                            </button>
+                        </form>
+
                     </td>
                 </tr>
             }
