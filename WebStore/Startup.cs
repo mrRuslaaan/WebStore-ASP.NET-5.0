@@ -50,7 +50,6 @@ namespace WebStore
             {
                 opt.Cookie.Name = "WebStore.GB";
                 opt.Cookie.HttpOnly = true;
-                opt.ExpireTimeSpan = TimeSpan.FromDays(10);
 
                 opt.LoginPath = "/Account/Login";
                 opt.LogoutPath = "/Account/Logout";
