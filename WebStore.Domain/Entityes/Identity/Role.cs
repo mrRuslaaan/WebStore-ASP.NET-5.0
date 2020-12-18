@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace WebStore.Domain.Entityes.Identity
 {
-    class Role : IdentityRole
+    public class Role : IdentityRole
     {
         public const string Administrator = "Administrators";
 
