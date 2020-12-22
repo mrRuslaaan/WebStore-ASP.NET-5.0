@@ -10,5 +10,7 @@ namespace WebStore.ViewModels
         public int Order { get ; set; }
         public List<CategoryViewModel> ChildCategories { get; set; } = new();
         public CategoryViewModel ParentCategory { get; set; }
+
+        public int ProductsCount { get; set; }
     }
 }

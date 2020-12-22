@@ -5,12 +5,20 @@ using System.Threading.Tasks;
 using WebStore.Domain;
 using WebStore.Domain.Entityes;
 using WebStore.Infrastructure.Interfaces;
+using WebStore.Models;
 
-namespace WebStore.Infrastructure.Services
+namespace WebStore.Data
 {
-    public class ProductsDataService : IProductsData
+    public static class TestData
     {
-        private static  IEnumerable<Category> __Categories { get; } = new[]
+        public static List<Worker> Workers { get; } = new()
+        {
+            new Worker { Id = 1, LastName = "Пушкин", FirstName = "Александр", Patronymic = "Сергеевич", Age = 22, Position = "junior developer" },
+            new Worker { Id = 2, LastName = "Достоевский", FirstName = "Фёдор", Patronymic = "Михайлович", Age = 39, Position = "designer" },
+            new Worker { Id = 3, LastName = "Толстой", FirstName = "Лев", Patronymic = "Николаевич", Age = 45, Position = "senior developer" },
+        };
+
+        public static IEnumerable<Category> Categories { get; } = new[]
        {
               new Category { Id = 1, Name = "Спорт", Order = 0 },
               new Category { Id = 2, Name = "Nike", Order = 0, ParentId = 1 },
@@ -44,7 +52,7 @@ namespace WebStore.Infrastructure.Services
               new Category { Id = 30, Name = "Обувь", Order = 9 },
         };
 
-        private static IEnumerable<Brand> __Brands { get; } = new[]
+        public static IEnumerable<Brand> Brands { get; } = new[]
         {
             new Brand { Id = 1, Name = "Acne"  },
             new Brand { Id = 2, Name = "Grune Erde"},
@@ -55,7 +63,7 @@ namespace WebStore.Infrastructure.Services
             new Brand { Id = 7, Name = "Rosch creative culture"},
         };
 
-        public static IEnumerable<Product> __Products { get; } = new[]
+        public static IEnumerable<Product> Products { get; } = new[]
        {
             new Product { Id = 1, Name = "Белое платье", Price = 1025, ImageUrl = "product1.jpg", CategoryId = 2, BrandId = 1 },
             new Product { Id = 2, Name = "Розовое платье", Price = 1025, ImageUrl = "product2.jpg", CategoryId = 2, BrandId = 1 },
@@ -70,20 +78,5 @@ namespace WebStore.Infrastructure.Services
             new Product { Id = 11, Name = "Джинсы женские", Price = 1025, ImageUrl = "product11.jpg", CategoryId = 25, BrandId = 3 },
             new Product { Id = 12, Name = "Летний костюм", Price = 1025, ImageUrl = "product12.jpg", CategoryId = 25, BrandId = 3 },
         };
-        public IEnumerable<Brand> GetBrands() => __Brands;
-
-        public IEnumerable<Category> GetCategories() => __Categories;
-        public IEnumerable<Product> GetProducts(ProductFilter Filter = null)
-        {
-            var query = __Products;
-
-            if (Filter?.CategoryId != null) 
-                query = query.Where(product => product.CategoryId == Filter.CategoryId);
-
-            if (Filter?.BrandId != null)
-                query = query.Where(product => product.BrandId == Filter.BrandId);
-
-            return query;
-        }
     }
 }
