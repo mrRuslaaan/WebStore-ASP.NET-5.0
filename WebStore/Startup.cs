@@ -11,6 +11,8 @@ using WebStore.DAL.Context;
 using WebStore.Data;
 using WebStore.Infrastructure.Services.InMemory;
 using WebStore.Infrastructure.Services.InSql;
+using WebStore.Domain.Entityes.Identity;
+using Microsoft.AspNetCore.Identity;
 
 namespace WebStore
 {
@@ -24,6 +26,39 @@ namespace WebStore
         {
             services.AddDbContext<WebStoreDB>(opt => opt.UseSqlServer(_Configuration.GetConnectionString("Default")));
             services.AddTransient<WebStoreDbInitializer>();
+
+            services.AddIdentity<User, Role>(opt => 
+            {
+#if DEBUG
+                opt.Password.RequiredLength = 3;
+                opt.Password.RequireDigit = false;
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequiredUniqueChars = 3;
+#endif
+                opt.User.RequireUniqueEmail = false;
+                opt.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+
+                opt.Lockout.AllowedForNewUsers = true;
+                opt.Lockout.MaxFailedAccessAttempts = 10;
+            })
+               .AddEntityFrameworkStores<WebStoreDB>()
+               .AddDefaultTokenProviders();
+
+            services.ConfigureApplicationCookie(opt =>
+            {
+                opt.Cookie.Name = "WebStore.GB";
+                opt.Cookie.HttpOnly = true;
+
+                opt.LoginPath = "/Account/Login";
+                opt.LogoutPath = "/Account/Logout";
+                opt.AccessDeniedPath = "/Account/AccessDenied";
+
+                opt.SlidingExpiration = true;
+            });
+
+
             services.AddControllersWithViews();
             services.AddTransient<IWorkersData, WorkersDataService>();
             services.AddTransient<IProductsData, SqlProductData>();
@@ -42,6 +77,10 @@ namespace WebStore
             app.UseRouting();
 
             app.UseStaticFiles();
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
 
 
             app.UseEndpoints(endpoints =>
